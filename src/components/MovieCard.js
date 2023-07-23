@@ -15,12 +15,13 @@ export default function MovieCard({ item }) {
 
   function handleOnClick(event) {
     event.preventDefault();
+    console.log("print in moviecard: ", item.id);
     navigate(`movie/${item.id}`);
   }
 
   return (
-    <Card sx={{ maxWitemth: 345 }} onClick={handleOnClick}>
-      <CardActionArea LinkComponent={Link} to={`/movie/${item.id}`}>
+    <Card sx={{ maxWitemth: 345 }}>
+      <CardActionArea LinkComponent={Link} href={`/movie/${item.id}`}>
         <Box height="150" position="relative">
           <CardMedia
             component="img"

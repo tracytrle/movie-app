@@ -16,7 +16,8 @@ function HomePage() {
           `/trending/all/day?api_key=${API_KEY}`
         );
         const result = res.data.results;
-        setTrendingList(result);
+        // console.log("Homepage print result: ", result);
+        setTrendingList(result.slice(0, 4));
         setcutInitial([...result].splice(16, 4));
         setLoading(false);
       } catch (e) {
@@ -24,6 +25,7 @@ function HomePage() {
       }
     };
     fetchData();
+    // console.log("Homepage print trendingList: ", trendingList);
   }, []);
 
   return (

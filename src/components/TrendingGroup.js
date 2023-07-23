@@ -30,7 +30,7 @@ function TrendingGroup({ trendingList, cutInitial, loadingTrending }) {
   // }
 
   useEffect(() => {
-    let y = [...trendingList].slice(0, 4);
+    let y = [...trendingList];
     setcopiedList([...y]);
     // console.log("print copiedList length: ", copiedList.length);
     setCutList(y);
