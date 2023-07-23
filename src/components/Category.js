@@ -1,24 +1,32 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import apiService from "../api/apiService";
 import { API_KEY } from "../api/config";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Typography } from "@mui/material";
+import { useNavigate } from "react-router";
 
 export default function Category() {
   const [genresList, setGenresList] = useState([]);
   const [loading, setLoading] = useState();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
+  const menuItemRef = useRef();
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    navigate("/");
   };
   const handleClose = () => {
     setAnchorEl(null);
+    const genreId = menuItemRef.current.id;
+    console.log("print category Onclick genreId: ", genreId);
+    if (genreId) {
+      navigate(`genre/${genreId}`);
+    }
   };
 
   useEffect(() => {
@@ -60,9 +68,14 @@ export default function Category() {
               "aria-labelledby": "basic-button",
             }}
           >
-            {genresList.map((item) => (
-              <MenuItem key={item.id} onClick={handleClose}>
-                {item.name}
+            {genresList.map((genre) => (
+              <MenuItem
+                key={genre.id}
+                ref={menuItemRef}
+                id={genre.id}
+                onClick={handleClose}
+              >
+                {genre.name}
               </MenuItem>
             ))}
           </Menu>

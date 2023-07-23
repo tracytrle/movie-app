@@ -5,6 +5,7 @@ import LoginModal from "../form/LoginModal";
 import MainLayout from "../layouts/MainLayout";
 import MainHeader from "../pages/MainHeader";
 import AuthProvider from "../AuthComponents/AuthProvider";
+import GenreGroupPage from "../pages/GenreGroupPage";
 
 // import MovieDetailPage from "../pages/MovieDetailPage";
 import MovieDetailPage from "../pages/MovieDetailPage";
@@ -17,6 +18,7 @@ function Router() {
         <Route index element={<MainLayout />} />
         <Route path="/login" element={<LoginModal />}></Route>
         <Route path="/movie/:movieId" element={<MovieDetailPage />} />
+        <Route path="/genre/:genreId" element={<GenreGroupPage />} />
       </Routes>
     </AuthProvider>
   );
