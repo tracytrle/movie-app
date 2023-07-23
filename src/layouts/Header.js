@@ -18,6 +18,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import AuthContext from "../AuthComponents/AuthContext";
+import ReorderIcon from "@mui/icons-material/Reorder";
+import Category from "../components/Category";
+
 const pages = ["Home", "TVShows", "Movies", "New & Popular"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -94,56 +97,34 @@ function Header() {
   return (
     <Toolbar
       sx={{
-        width: "1200px",
+        width: { xs: "100%", xl: "1200px" },
         display: "flex",
-        flexWrap: "wrap",
+        justifyContent: {
+          xs: "center",
+          md: "space-between",
+          xl: "space-between",
+        },
+        // flexWrap: { xs: "wrap" },
+        flexDirection: { xs: "row" },
       }}
       disableGutters
     >
-      <Logo sx={{ display: { xs: "flex", md: "flex" }, mr: 1, ml: 1 }} />
-      {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}> */}
-      {/* <Menu
-          id="menu-appbar"
-          anchorEl={anchorElNav}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          open={Boolean(anchorElNav)}
-          onClose={handleCloseNavMenu}
-          sx={{
-            display: { xs: "block", md: "none" },
-          }}
-        >
-          {pages.map((page) => (
-            <MenuItem key={page} onClick={handleCloseNavMenu}>
-              <Typography textAlign="center">{page}</Typography>
-            </MenuItem>
-          ))}
-        </Menu> */}
-      {/* </Box> */}
-      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-        {pages.map((page) => (
-          <Button
-            key={page}
-            onClick={handleCloseNavMenu}
-            sx={{ my: 1, color: "white", display: "block" }}
-          >
-            {page}
-          </Button>
-        ))}
+      <Box sx={{ display: { xs: "flex", md: "flex" }, ml: 2, mr: 1 }}>
+        <Category />
       </Box>
+      <Logo
+        sx={{
+          mr: 2,
+          display: { xs: "flex", md: "flex" },
+          width: { xs: "4rem", md: "8rem" },
+        }}
+      />
       <Box
         sx={{
-          // flexGrow: 1,
-          display: { xs: "flex", md: "flex" },
+          display: "flex",
           justifyContent: "center",
           mr: 1,
+          width: { xs: "250px" },
         }}
       >
         <Search>
@@ -155,7 +136,7 @@ function Header() {
             inputProps={{ "aria-label": "search" }}
           />
         </Search>
-        <Box sx={{ flexGrow: 0 }}>
+        <Box>
           {auth?.user ? (
             <>
               <Tooltip title="Open settings">

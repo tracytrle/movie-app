@@ -53,7 +53,7 @@ function TrendingGroup({ trendingList, cutInitial, loadingTrending }) {
         alignItems="center"
         color="white"
       >
-        <Typography variant="h5" my={3} color="white">
+        <Typography variant="h5" ml={1} my={3} color="white">
           TRENDING
         </Typography>
         {/* <PaginationItem onClick={() => setCutList(handleList())} type="next" /> */}
