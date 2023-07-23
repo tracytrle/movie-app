@@ -6,6 +6,7 @@ import MainLayout from "../layouts/MainLayout";
 import MainHeader from "../pages/MainHeader";
 import AuthProvider from "../AuthComponents/AuthProvider";
 
+// import MovieDetailPage from "../pages/MovieDetailPage";
 import MovieDetailPage from "../pages/MovieDetailPage";
 
 function Router() {

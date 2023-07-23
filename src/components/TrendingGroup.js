@@ -35,7 +35,7 @@ function TrendingGroup({ trendingList, cutInitial, loadingTrending }) {
     // console.log("print copiedList length: ", copiedList.length);
     setCutList(y);
     // console.log("print cutList length: ", cutList.length);
-  }, []);
+  }, [trendingList]);
 
   const placeholder = [0, 1, 2, 3];
   const detailSkeleton = (

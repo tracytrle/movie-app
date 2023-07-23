@@ -7,7 +7,7 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 
 import Container from "@mui/material/Container";
 import Header from "../layouts/Header";
-import HomePage from "./HomePage";
+import HomePageContainer from "./HomePageContainer";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -44,7 +44,7 @@ export default function ElevateAppBar(props) {
         </AppBar>
       </ElevationScroll>
       <Container>
-        <HomePage />
+        <HomePageContainer />
       </Container>
     </React.Fragment>
   );
