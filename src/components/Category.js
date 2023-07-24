@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import apiService from "../api/apiService";
 import { API_KEY } from "../api/config";
 import Button from "@mui/material/Button";
@@ -13,20 +13,18 @@ export default function Category() {
   const [loading, setLoading] = useState();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
-  const menuItemRef = useRef();
+  // const menuItemRef = useRef();
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    navigate("/");
   };
-  const handleClose = () => {
+
+  const handleClose = (genreId) => {
     setAnchorEl(null);
-    const genreId = menuItemRef.current.id;
+    // const genreId = menuItemRef.current.id;
     console.log("print category Onclick genreId: ", genreId);
-    if (genreId) {
-      navigate(`genre/${genreId}`);
-    }
+    navigate(`/genre/${genreId}`);
   };
 
   useEffect(() => {
@@ -71,9 +69,10 @@ export default function Category() {
             {genresList.map((genre) => (
               <MenuItem
                 key={genre.id}
-                ref={menuItemRef}
                 id={genre.id}
-                onClick={handleClose}
+                onClick={() => {
+                  handleClose(genre.id);
+                }}
               >
                 {genre.name}
               </MenuItem>
