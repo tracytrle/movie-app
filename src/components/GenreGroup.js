@@ -3,12 +3,12 @@ import apiService from "../api/apiService";
 import { API_KEY } from "../api/config";
 import Grid from "@mui/material/Grid";
 import TrendingGroup from "../components/TrendingGroup";
-import { useParams } from "react-router";
+
+import ShowMovies from "./ShowMovies";
 
 function GenreGroup({ genreId }) {
   const [loading, setLoading] = useState();
   const [genreList, setGenreList] = useState([]);
-  const [cutInitial, setcutInitial] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,18 +17,15 @@ function GenreGroup({ genreId }) {
         setLoading(true);
         const res = await apiService.get(`${url}&with_genres=${genreId}`);
         const result = res.data.results;
-
-        // console.log("Homepage print result: ", result);
+        console.log("ShowMovies print result: ", result);
         setGenreList(result.slice(0, 12));
-        setcutInitial([...result].splice(16, 12));
         setLoading(false);
       } catch (e) {
         console.log(e.message);
       }
     };
     fetchData();
-    // console.log("Homepage print trendingList: ", trendingList);
-  }, []);
+  }, [genreList]);
 
   return (
     <>
@@ -42,11 +39,7 @@ function GenreGroup({ genreId }) {
         }}
       >
         <Grid item direction="column" container>
-          <TrendingGroup
-            trendingList={genreList}
-            cutInitial={cutInitial}
-            loading={loading}
-          />
+          <ShowMovies moviesList={genreList} />
         </Grid>
       </Grid>
     </>

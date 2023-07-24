@@ -39,11 +39,6 @@ ElevationScroll.propTypes = {
 
 export default function ElevateAppBar(props) {
   const { genreId } = useParams();
-
-  useEffect(() => {
-    console.log("print genreId in GenreGroupPage: ", genreId);
-  }, []);
-
   return (
     <React.Fragment>
       <CssBaseline />
