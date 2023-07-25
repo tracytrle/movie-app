@@ -22,30 +22,13 @@ export default function MovieCard({ item }) {
   return (
     <Card sx={{ maxWitemth: 345 }}>
       <CardActionArea LinkComponent={Link} href={`/movie/${item.id}`}>
-        <Box height="150" position="relative">
+        <Box height="100" position="relative">
           <CardMedia
             component="img"
             height="100%"
             image={url + item.poster_path}
             alt=""
           />
-          <Typography
-            gutterBottom
-            variant="h8"
-            component="div"
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              color: "white",
-              width: "100%",
-              textAlign: "center",
-              zIndex: 1,
-            }}
-          >
-            {`${item.original_title}`}
-          </Typography>
         </Box>
       </CardActionArea>
     </Card>

@@ -6,6 +6,7 @@ import MainLayout from "../layouts/MainLayout";
 import MainHeader from "../pages/MainHeader";
 import AuthProvider from "../AuthComponents/AuthProvider";
 import GenreGroupPage from "../pages/GenreGroupPage";
+import SearchPage from "../pages/SearchPage";
 
 // import MovieDetailPage from "../pages/MovieDetailPage";
 import MovieDetailPage from "../pages/MovieDetailPage";
@@ -19,6 +20,8 @@ function Router() {
         <Route path="/login" element={<LoginModal />}></Route>
         <Route path="/movie/:movieId" element={<MovieDetailPage />} />
         <Route path="/genre/:genreId" element={<GenreGroupPage />} />
+
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
     </AuthProvider>
   );

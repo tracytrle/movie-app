@@ -1,15 +1,11 @@
 import * as React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "../components/Logo";
@@ -18,8 +14,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import AuthContext from "../AuthComponents/AuthContext";
-import ReorderIcon from "@mui/icons-material/Reorder";
 import Category from "../components/Category";
+// import { useSearchParams } from "react-router-dom";
 
 const pages = ["Home", "TVShows", "Movies", "New & Popular"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -71,6 +67,38 @@ function Header() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // let [searchParams, setSearchParams] = useSearchParams();
+
+  // const [searchValue, setSearchValue] = useState(
+  //   searchParams.get("keyword") || ""
+  // );
+
+  const [searchValue, setSearchValue] = useState("");
+  function handleOnChange(event) {
+    let value = event.target.value;
+    setSearchValue(value);
+    // setSearchParams(value);
+  }
+
+  // since styled("div") not "form", we cannot use onSubmit
+  const handleKeyDown = (event) => {
+    if (auth.user) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        let value = event.target.value;
+        // console.log("print input in search: ", value);
+        setSearchValue(value);
+        // setSearchParams({ keyword: value });
+        // setSearchParams(value);
+        navigate(`/search?keyword=${value}`);
+        // console.log("print url in header: ", `/search/keyword=${searchValue}`);
+        // if (searchValue.trim() !== "") {
+        //   window.location = `/search?keyword=${searchValue}`;
+        // }
+      }
+    }
+  };
 
   const handleOpen = () => {
     navigate("/login");
@@ -134,6 +162,11 @@ function Header() {
           <StyledInputBase
             placeholder="Search…"
             inputProps={{ "aria-label": "search" }}
+            value={searchValue}
+            onChange={(event) => {
+              handleOnChange(event);
+            }}
+            onKeyDown={handleKeyDown}
           />
         </Search>
         <Box>

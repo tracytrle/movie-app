@@ -17,7 +17,7 @@ function GenreGroup({ genreId }) {
         setLoading(true);
         const res = await apiService.get(`${url}&with_genres=${genreId}`);
         const result = res.data.results;
-        console.log("ShowMovies print result: ", result);
+        // console.log("ShowMovies print result: ", result);
         setGenreList(result.slice(0, 12));
         setLoading(false);
       } catch (e) {
