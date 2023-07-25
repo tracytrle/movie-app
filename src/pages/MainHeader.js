@@ -8,6 +8,8 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Container from "@mui/material/Container";
 import Header from "../layouts/Header";
 import HomePageContainer from "./HomePageContainer";
+import MainFooter from "../layouts/MainFooter";
+import Typography from "@mui/material/Typography";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -43,8 +45,10 @@ export default function ElevateAppBar(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-      <Container>
+      <Container sx={{ backgroundColor: "primary.light" }}>
+        <Typography>TRENDING: </Typography>
         <HomePageContainer />
+        <MainFooter />
       </Container>
     </React.Fragment>
   );

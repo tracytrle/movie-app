@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import apiService from "../api/apiService";
 import { API_KEY } from "../api/config";
 import Grid from "@mui/material/Grid";
-import TrendingGroup from "../components/TrendingGroup";
+// import TrendingGroup from "../components/TrendingGroup";
+import ShowMovies from "../components/ShowMovies";
+import Carousel from "better-react-carousel";
+import CarouselTrending from "../components/CarouselTrending";
+import Typography from "@mui/material/Typography";
 
 function HomePage() {
   const [loading, setLoading] = useState();
   const [trendingList, setTrendingList] = useState([]);
-  const [cutInitial, setcutInitial] = useState();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -16,16 +20,14 @@ function HomePage() {
           `/trending/all/day?api_key=${API_KEY}`
         );
         const result = res.data.results;
-        // console.log("Homepage print result: ", result);
-        setTrendingList(result.slice(0, 4));
-        setcutInitial([...result].splice(16, 4));
+        setTrendingList(result.slice(0, 20));
+
         setLoading(false);
       } catch (e) {
         console.log(e.message);
       }
     };
     fetchData();
-    // console.log("Homepage print trendingList: ", trendingList);
   }, []);
 
   return (
@@ -40,11 +42,12 @@ function HomePage() {
         }}
       >
         <Grid item direction="column" container>
-          <TrendingGroup
-            trendingList={trendingList}
-            cutInitial={cutInitial}
-            loading={loading}
-          />
+          <Typography
+            style={{ color: "white", fontSize: "2rem", fontWeight: "bold" }}
+          >
+            TRENDING{" "}
+          </Typography>
+          <CarouselTrending moviesList={trendingList} />
         </Grid>
       </Grid>
     </>
