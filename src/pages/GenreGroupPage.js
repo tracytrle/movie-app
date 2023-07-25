@@ -11,6 +11,7 @@ import Header from "../layouts/Header";
 import HomePageContainer from "./HomePageContainer";
 import { useParams } from "react-router";
 import GenreGroup from "../components/GenreGroup";
+import MainFooter from "../layouts/MainFooter";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -47,8 +48,9 @@ export default function ElevateAppBar(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-      <Container>
+      <Container sx={{ backgroundColor: "primary.light" }}>
         <GenreGroup genreId={genreId} />
+        <MainFooter />
       </Container>
     </React.Fragment>
   );

@@ -10,6 +10,7 @@ import Header from "../layouts/Header";
 import HomePageContainer from "./HomePageContainer";
 import { useParams } from "react-router";
 import MovieDetail from "../components/MovieDetail";
+import MainFooter from "../layouts/MainFooter";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -46,8 +47,11 @@ export default function ElevateAppBar(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-      <Container>
+      <Container
+        sx={{ backgroundColor: "primary.light", color: "primary.contrastText" }}
+      >
         <MovieDetail id={movieId} />
+        <MainFooter />
       </Container>
     </React.Fragment>
   );

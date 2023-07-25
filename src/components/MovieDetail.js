@@ -58,6 +58,7 @@ export default function MovieDetail({ id }) {
             mt: "100px",
             display: "flex",
             justifyContent: "center",
+            color: "primary.contrastText",
           }}
         >
           <Stack
@@ -80,6 +81,7 @@ export default function MovieDetail({ id }) {
                 variant="h5"
                 component="div"
                 fontWeight="bold"
+                mt={2}
               >
                 {`${movie.original_title}`}
               </Typography>
@@ -105,12 +107,14 @@ export default function MovieDetail({ id }) {
                   textAlign="center"
                   component="div"
                   fontSize="0.8rem"
+                  color="forth"
                 >
                   <Button
                     style={{
                       border: "1px solid black",
                       width: "50px",
                       height: "40px",
+                      backgroundColor: "#57606f",
                     }}
                   >
                     <svg
@@ -139,6 +143,7 @@ export default function MovieDetail({ id }) {
                       border: "1px solid black",
                       width: "50px",
                       height: "40px",
+                      backgroundColor: "#57606f",
                     }}
                   >
                     <svg
@@ -168,6 +173,7 @@ export default function MovieDetail({ id }) {
                       border: "1px solid black",
                       width: "50px",
                       height: "40px",
+                      backgroundColor: "#57606f",
                     }}
                   >
                     <svg
@@ -186,18 +192,24 @@ export default function MovieDetail({ id }) {
                   <p>Like</p>
                 </Typography>
               </Stack>
-              <Typography mr={1} variant="caption" sx={{ fontSize: "14px" }}>
+              <Typography
+                mr={1}
+                variant="caption"
+                sx={{
+                  fontSize: "14px",
+                }}
+              >
                 <p>Genres:</p>
-                <IconButton>
-                  {movie.genres.map((item) => (
-                    <Chip
-                      key={`${item.id}`}
-                      label={`${item.name}`}
-                      size="small"
-                      variant="outlined"
-                    />
-                  ))}
-                </IconButton>
+
+                {movie.genres.map((item) => (
+                  <Chip
+                    key={`${item.id}`}
+                    label={`${item.name}`}
+                    size="small"
+                    variant="outlined"
+                    style={{ color: "#f5f6fa" }}
+                  />
+                ))}
               </Typography>
               <Typography mr={1} variant="caption" sx={{ fontSize: "14px" }}>
                 <p sx={{ fontSize: "2rem" }}>Spoken languages:</p>
@@ -208,6 +220,7 @@ export default function MovieDetail({ id }) {
                       label={`${item.name}`}
                       size="small"
                       variant="outlined"
+                      style={{ color: "#f5f6fa" }}
                     />
                   ) : (
                     <p></p>
@@ -278,7 +291,7 @@ export default function MovieDetail({ id }) {
             <Typography gutterBottom variant="h5" component="div">
               Overview
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.forth">
               {`${movie.overview}`}
             </Typography>
           </CardContent>

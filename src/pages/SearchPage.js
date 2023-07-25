@@ -12,6 +12,7 @@ import Header from "../layouts/Header";
 import { useSearchParams } from "react-router-dom";
 import ShowMovies from "../components/ShowMovies";
 import { useLocation } from "react-router-dom";
+import MainFooter from "../layouts/MainFooter";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -98,8 +99,9 @@ export default function SearchPage(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-      <Container>
+      <Container sx={{ backgroundColor: "primary.light" }}>
         <ShowMovies moviesList={searchList} />
+        <MainFooter />
       </Container>
     </React.Fragment>
   );

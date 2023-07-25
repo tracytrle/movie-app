@@ -28,6 +28,11 @@ const THIRD = {
   contrastText: "#FFF",
 };
 
+const FORTH = {
+  main: "#f5f6fa",
+  light: "#ffffff",
+};
+
 const SUCCESS = {
   lighter: "#E9FCD4",
   light: "#AAF27F",
@@ -43,6 +48,7 @@ function ThemeProvider({ children }) {
       primary: PRIMARY,
       secondary: SECONDARY,
       third: THIRD,
+      forth: FORTH,
       success: SUCCESS,
     },
     shape: { borderRadius: 8 },
