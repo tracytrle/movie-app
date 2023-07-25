@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -21,6 +21,7 @@ export default function MovieDetail({ id }) {
 
   useEffect(() => {
     console.log("========> print in MovieDetail item.id: ", id);
+
     const fetchData = async () => {
       try {
         console.log(`=========>`);

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import apiService from "../api/apiService";
 import { API_KEY } from "../api/config";
 import Button from "@mui/material/Button";
@@ -7,12 +7,14 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router";
+import AuthContext from "../AuthComponents/AuthContext";
 
 export default function Category() {
   const [genresList, setGenresList] = useState([]);
   const [loading, setLoading] = useState();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
+  const auth = useContext(AuthContext);
   // const menuItemRef = useRef();
 
   const open = Boolean(anchorEl);

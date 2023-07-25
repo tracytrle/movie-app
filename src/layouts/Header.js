@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,7 +9,7 @@ import Menu from "@mui/material/Menu";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "../components/Logo";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
@@ -18,7 +18,7 @@ import Category from "../components/Category";
 // import { useSearchParams } from "react-router-dom";
 
 const pages = ["Home", "TVShows", "Movies", "New & Popular"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "MyList", "Logout"];
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -67,12 +67,8 @@ function Header() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
-
-  // let [searchParams, setSearchParams] = useSearchParams();
-
-  // const [searchValue, setSearchValue] = useState(
-  //   searchParams.get("keyword") || ""
-  // );
+  const location = useLocation();
+  const currentPage = location.pathname;
 
   const [searchValue, setSearchValue] = useState("");
   function handleOnChange(event) {
@@ -96,16 +92,17 @@ function Header() {
     navigate("/login");
   };
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
   const handleOpenUserMenu = (event) => {
+    event.preventDefault();
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  // const handleCloseNavMenu = () => {
+  //   setAnchorElNav(null);
+  // };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -113,6 +110,10 @@ function Header() {
       navigate("/");
     });
   };
+
+  useEffect(() => {
+    console.log("print in Header user: ", auth.user);
+  }, []);
 
   return (
     <Toolbar
