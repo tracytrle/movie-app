@@ -53,13 +53,17 @@ export default function ElevateAppBar(props) {
   }
 
   useEffect(() => {
+    console.log("print in GenreGroup id: ", genreId);
+    console.log("print in Genre page: ", page);
+  }, [genreId, page]);
+
+  useEffect(() => {
     const fetchData = async () => {
       let url = `discover/movie?api_key=${API_KEY}&language=en-US&append_to_response=videos`;
       try {
         setLoading(true);
         const res = await apiService.get(`${url}&with_genres=${genreId}`);
         const result = res.data.results;
-        // console.log("ShowMovies print result: ", result);
         let size = result.length;
 
         setTotalPages(Math.ceil(size / 12));
