@@ -13,6 +13,8 @@ import { useSearchParams } from "react-router-dom";
 import ShowMovies from "../components/ShowMovies";
 import { useLocation } from "react-router-dom";
 import MainFooter from "../layouts/MainFooter";
+import PaginationController from "../components/PaginationController";
+import { Typography } from "@mui/material";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -41,12 +43,15 @@ ElevationScroll.propTypes = {
 
 export default function SearchPage(props) {
   const [searchParams] = useSearchParams();
-  // const searchParams = new URLSearchParams(window.location.search);
-  // const searchInput = searchParams.get("keyword");
-
   const [loading, setLoading] = useState();
   const [searchList, setSearchList] = useState([]);
   const searchInput = searchParams.get("keyword");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  function changePage(newPage) {
+    setPage(newPage);
+  }
 
   useEffect(() => {
     console.log("print in searchPage input: ", searchInput);
@@ -80,8 +85,13 @@ export default function SearchPage(props) {
               collection.push(item);
             }
           }
+          let size = collection.length;
+
+          setTotalPages(Math.ceil(size / 12));
+          let start = (page - 1) * 12;
+          let end = start + 12;
           console.log("searchList print collection: ", collection);
-          setSearchList(collection.slice(0, 12));
+          setSearchList(collection.slice(start, end));
         }
         setLoading(false);
       } catch (e) {
@@ -89,7 +99,7 @@ export default function SearchPage(props) {
       }
     };
     fetchData();
-  }, [searchInput]);
+  }, [searchInput, page, totalPages]);
 
   return (
     <React.Fragment>
@@ -100,7 +110,18 @@ export default function SearchPage(props) {
         </AppBar>
       </ElevationScroll>
       <Container sx={{ backgroundColor: "primary.light" }}>
-        <ShowMovies moviesList={searchList} />
+        {searchList.length > 0 ? (
+          <>
+            <ShowMovies moviesList={searchList} />
+            <PaginationController
+              PageCount={totalPages}
+              changePage={changePage}
+            />
+          </>
+        ) : (
+          <Typography>MOVIE NOT FOUND</Typography>
+        )}
+
         <MainFooter />
       </Container>
     </React.Fragment>

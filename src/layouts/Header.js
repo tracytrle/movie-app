@@ -78,7 +78,6 @@ function Header() {
   function handleOnChange(event) {
     let value = event.target.value;
     setSearchValue(value);
-    // setSearchParams(value);
   }
 
   // since styled("div") not "form", we cannot use onSubmit
@@ -87,15 +86,8 @@ function Header() {
       if (event.key === "Enter") {
         event.preventDefault();
         let value = event.target.value;
-        // console.log("print input in search: ", value);
         setSearchValue(value);
-        // setSearchParams({ keyword: value });
-        // setSearchParams(value);
         navigate(`/search?keyword=${value}`);
-        // console.log("print url in header: ", `/search/keyword=${searchValue}`);
-        // if (searchValue.trim() !== "") {
-        //   window.location = `/search?keyword=${searchValue}`;
-        // }
       }
     }
   };

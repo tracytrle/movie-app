@@ -9,6 +9,11 @@ import ShowMovies from "./ShowMovies";
 function GenreGroup({ genreId }) {
   const [loading, setLoading] = useState();
   const [genreList, setGenreList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  function changePage(newPage) {
+    setPage(newPage);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,15 +22,19 @@ function GenreGroup({ genreId }) {
         setLoading(true);
         const res = await apiService.get(`${url}&with_genres=${genreId}`);
         const result = res.data.results;
-        // console.log("ShowMovies print result: ", result);
-        setGenreList(result.slice(0, 12));
+        let size = result.length;
+
+        setTotalPages(Math.ceil(size / 12));
+        let start = (page - 1) * 12;
+        let end = start + 12;
+        setGenreList(result.slice(start, end));
         setLoading(false);
       } catch (e) {
         console.log(e.message);
       }
     };
     fetchData();
-  }, [genreList]);
+  }, [genreList, page, totalPages]);
 
   return (
     <>
