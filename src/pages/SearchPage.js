@@ -1,8 +1,8 @@
 import * as React from "react";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
-
+import { Box, CircularProgress } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import { API_KEY } from "../api/config";
@@ -11,16 +11,13 @@ import Container from "@mui/material/Container";
 import Header from "../layouts/Header";
 import { useSearchParams } from "react-router-dom";
 import ShowMovies from "../components/ShowMovies";
-import { useLocation } from "react-router-dom";
 import MainFooter from "../layouts/MainFooter";
 import PaginationController from "../components/PaginationController";
 import { Typography } from "@mui/material";
 
 function ElevationScroll(props) {
   const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -34,10 +31,7 @@ function ElevationScroll(props) {
 
 ElevationScroll.propTypes = {
   children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
+
   window: PropTypes.func,
 };
 
@@ -54,33 +48,29 @@ export default function SearchPage(props) {
   }
 
   useEffect(() => {
-    console.log("print in searchPage input: ", searchInput);
-    console.log("-------> ", searchParams.get("keyword"));
-  }, []);
+    console.log("print page in Pag: ", page);
+  }, [page]);
 
   useEffect(() => {
     const fetchData = async () => {
       let base = `search/keyword?`;
-
       // const origin= `https://api.themoviedb.org/3/search/keyword?query=action&api_key=efafb7eead013aa31662cc51ddcdcbf9`;
-
       try {
         setLoading(true);
         const fetchData = await apiService.get(
           `${base}query=${searchInput}&api_key=${API_KEY}`
         );
         const keyList = fetchData.data.results;
-        console.log("searchList print keyList: ", keyList);
         const collection = [];
         if (keyList) {
           for (const key of keyList) {
             const keyword = key.id;
-            // console.log("searchList print keyId: ", keyword);
+
             const res = await apiService.get(
               `keyword/${keyword}/movies?api_key=${API_KEY}&with_keywords=${keyword}&language=en-US`
             );
             const result = res.data.results;
-            // console.log("searchList print result: ", result);
+
             for (const item of result) {
               collection.push(item);
             }
@@ -90,7 +80,6 @@ export default function SearchPage(props) {
           setTotalPages(Math.ceil(size / 12));
           let start = (page - 1) * 12;
           let end = start + 12;
-          // console.log("searchList print collection: ", collection);
           setSearchList(collection.slice(start, end));
         }
         setLoading(false);
@@ -110,18 +99,35 @@ export default function SearchPage(props) {
         </AppBar>
       </ElevationScroll>
       <Container sx={{ backgroundColor: "primary.light", paddingTop: 4 }}>
-        {searchList.length > 0 ? (
-          <>
-            <ShowMovies moviesList={searchList} />
-            <PaginationController
-              PageCount={totalPages}
-              changePage={changePage}
-            />
-          </>
+        {loading ? (
+          <Box
+            sx={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "primary.light",
+            }}
+          >
+            <CircularProgress sx={{ color: "white" }} />
+          </Box>
         ) : (
-          <Typography>MOVIE NOT FOUND</Typography>
+          <>
+            {searchList.length > 0 ? (
+              <>
+                <ShowMovies moviesList={searchList} />
+                <PaginationController
+                  PageCount={totalPages}
+                  changePage={changePage}
+                />
+              </>
+            ) : (
+              <Typography>MOVIE NOT FOUND</Typography>
+            )}
+          </>
         )}
-
         <MainFooter />
       </Container>
     </React.Fragment>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -15,7 +15,6 @@ import InputBase from "@mui/material/InputBase";
 import AuthContext from "../AuthComponents/AuthContext";
 import Category from "../components/Category";
 
-const pages = ["Home", "TVShows", "Movies", "New & Popular"];
 const settings = ["Profile", "Account", "Logout"];
 
 const Search = styled("div")(({ theme }) => ({
@@ -61,7 +60,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function Header() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
@@ -98,17 +96,13 @@ function Header() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
     auth.logout(() => {
-      navigate("/");
+      navigate(currentPage, { replace: true });
     });
   };
   const handleMyFavList = () => {
     navigate("/myfavorite");
     setAnchorElUser(null);
   };
-
-  useEffect(() => {
-    console.log("print in Header user: ", auth.user);
-  }, []);
 
   return (
     <Toolbar

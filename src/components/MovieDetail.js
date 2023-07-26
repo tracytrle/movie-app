@@ -1,17 +1,16 @@
 import * as React from "react";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions, IconButton } from "@mui/material";
-import { Link } from "@mui/material";
+import { Button, CardActions } from "@mui/material";
+
 import apiService from "../api/apiService";
 import { API_KEY } from "../api/config";
-import { Box, Stack } from "@mui/system";
+import { Stack } from "@mui/system";
 import Skeleton from "@mui/material/Skeleton";
 import Chip from "@mui/material/Chip";
-import { MergeType } from "@mui/icons-material";
 
 export default function MovieDetail({ id }) {
   const [movie, setMovie] = useState(null);
@@ -22,16 +21,12 @@ export default function MovieDetail({ id }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500/";
 
   useEffect(() => {
-    console.log("========> print in MovieDetail item.id: ", id);
-
     const fetchData = async () => {
       try {
-        console.log(`=========>`);
         setLoading(true);
         const res = await apiService.get(`/movie/${id}?api_key=${API_KEY}`);
-        // console.log("print MovieDetail from fetch: ", res);
+
         const fullImageUrl = imageUrl + res.data.poster_path;
-        console.log("print MovieDetail image: ", fullImageUrl);
         setMovie({ ...res.data, fullImageUrl });
         setLoading(false);
       } catch (e) {
@@ -39,7 +34,7 @@ export default function MovieDetail({ id }) {
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   // initialize a list
   useEffect(() => {

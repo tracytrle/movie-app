@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import MovieCard from "./MovieCard";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 
 function ShowMovies({ moviesList }) {

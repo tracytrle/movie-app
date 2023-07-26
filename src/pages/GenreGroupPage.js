@@ -50,10 +50,9 @@ export default function ElevateAppBar(props) {
     setPage(newPage);
   }
 
-  useEffect(() => {
-    // console.log("print in GenreGroup id: ", genreId);
-    // console.log("print in Genre page: ", page);
-  }, [genreId, page]);
+  // useEffect(() => {
+  //   setPage(1);
+  // }, [genreId]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,7 +73,7 @@ export default function ElevateAppBar(props) {
       }
     };
     fetchData();
-  }, [genreList, page, totalPages]);
+  }, [genreList, page, totalPages, genreId]);
 
   return (
     <React.Fragment>
@@ -85,7 +84,7 @@ export default function ElevateAppBar(props) {
         </AppBar>
       </ElevationScroll>
       <Container sx={{ backgroundColor: "primary.light", paddingTop: 4 }}>
-        {genreList.length > 0 ? (
+        {loading && genreList.length > 0 ? (
           <>
             <ShowMovies moviesList={genreList} />
             <PaginationController

@@ -93,7 +93,7 @@ function LoginForm({ callback }) {
       </FormControl>
       <Button
         sx={{
-          backgroundColor: "red",
+          backgroundColor: "#e74c3c",
           color: "white",
           size: "large",
           m: 1,
@@ -102,8 +102,7 @@ function LoginForm({ callback }) {
         }}
         type="submit"
         onClick={handleLogin}
-        sx={{ m: 1, width: "10ch", margin: "auto" }}
-        variant="contained"
+        // variant="contained"
       >
         Login
       </Button>

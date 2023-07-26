@@ -30,10 +30,13 @@ export default function PaginationController({ PageCount, changePage }) {
               color: "white",
             },
             "& .MuiPaginationItem-root:hover": {
-              backgroundColor: "#df4747",
+              backgroundColor: "gray",
+            },
+            "& .MuiPaginationItem-root:active": {
+              backgroundColor: "#999",
             },
             "& .MuiPaginationItem-root.Mui-selected": {
-              backgroundColor: "#df4747",
+              backgroundColor: "gray",
             },
           }}
           count={PageCount}

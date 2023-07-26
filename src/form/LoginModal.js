@@ -25,7 +25,7 @@ const style = {
 
 function LoginModal() {
   let navigate = useNavigate();
-  let from = navigate.state?.from?.pathname || "/";
+  let from = navigate?.currentPage || "/";
 
   const handleClose = () => {
     navigate(-1);
