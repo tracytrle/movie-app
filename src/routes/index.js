@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import MainHeader from "../pages/MainHeader";
+import MainPage from "../pages/MainPage";
 import GenreGroupPage from "../pages/GenreGroupPage";
 import SearchPage from "../pages/SearchPage";
 
@@ -14,7 +14,7 @@ function Router() {
 
   return (
     <Routes location={state?.backgroundLocation || location}>
-      <Route path="/" element={<MainHeader />}></Route>
+      <Route path="/" element={<MainPage />}></Route>
       <Route path="/login" element={<LoginModal />}></Route>
 
       <Route path="/movie/:movieId" element={<MovieDetailPage />} />

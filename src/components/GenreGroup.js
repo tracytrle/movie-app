@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import apiService from "../api/apiService";
 import { API_KEY } from "../api/config";
 import Grid from "@mui/material/Grid";
-import TrendingGroup from "../components/TrendingGroup";
 
 import ShowMovies from "./ShowMovies";
 

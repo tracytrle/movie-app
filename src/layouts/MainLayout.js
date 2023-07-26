@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { Box, Stack } from "@mui/material";
 import MainFooter from "./MainFooter";
-import MainHeader from "../pages/MainHeader";
+import MainPage from "../pages/MainPage";
 
 function MainLayout() {
   return (
     <Stack sx={{ minHeight: "100vh" }}>
-      <MainHeader />
+      <MainPage />
 
       <Outlet />
 
