@@ -25,7 +25,7 @@ export default function Category() {
   const handleClose = (genreId) => {
     setAnchorEl(null);
     // const genreId = menuItemRef.current.id;
-    console.log("print category Onclick genreId: ", genreId);
+    // console.log("print category Onclick genreId: ", genreId);
     navigate(`/genre/${genreId}`);
   };
 
@@ -37,7 +37,7 @@ export default function Category() {
           `genre/movie/list?api_key=${API_KEY}&language=en-US`
         );
         setGenresList(res.data.genres);
-        console.log("print Category from fetch: ", res.data.genres);
+        // console.log("print Category from fetch: ", res.data.genres);
         setLoading(false);
       } catch (e) {
         console.log(e.message);

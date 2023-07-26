@@ -18,18 +18,22 @@ export default function MovieCard({ item }) {
   const auth = useContext(AuthContext);
 
   useEffect(() => {
-    console.log("print user in MovieCard: ", auth.user);
+    // console.log("print user in MovieCard: ", auth.user);
   }, []);
 
   function handleOnClick(event) {
     event.preventDefault();
-    console.log("print in moviecard: ", item.id);
+    // console.log("print in moviecard: ", item.id);
     navigate(`movie/${item.id}`);
   }
 
   return (
     <>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card
+        sx={{
+          maxWidth: 345,
+        }}
+      >
         <Box
           onClick={() =>
             auth?.user ? navigate(`/movie/${item.id}`) : navigate(`/login`)

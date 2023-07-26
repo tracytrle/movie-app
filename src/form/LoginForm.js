@@ -19,7 +19,7 @@ const style = {
   width: "300px",
   border: "1px solid",
   padding: "5px",
-  borderRadius: "0px",
+  borderRadius: "10px",
   flexWrap: "wrap",
   overflow: "scroll",
 
@@ -58,7 +58,7 @@ function LoginForm({ callback }) {
   return (
     <Box sx={style} gap={4}>
       <Typography
-        sx={{ display: "flex", justifyContent: "center " }}
+        sx={{ display: "flex", justifyContent: "center ", fontWeight: "bold" }}
         variant="h4"
         component="div"
       >
@@ -92,7 +92,14 @@ function LoginForm({ callback }) {
         />
       </FormControl>
       <Button
-        size="large"
+        sx={{
+          backgroundColor: "red",
+          color: "white",
+          size: "large",
+          m: 1,
+          width: "10ch",
+          margin: "auto",
+        }}
         type="submit"
         onClick={handleLogin}
         sx={{ m: 1, width: "10ch", margin: "auto" }}

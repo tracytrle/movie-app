@@ -4,6 +4,7 @@ import Router from "./routes";
 
 import ThemeProvider from "./contexts/ThemeProvider";
 import AuthProvider from "./AuthComponents/AuthProvider";
+import "./style.css";
 
 function App() {
   return (

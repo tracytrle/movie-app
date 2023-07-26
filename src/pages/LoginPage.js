@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 
@@ -8,15 +7,15 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 
 import Container from "@mui/material/Container";
 import Header from "../layouts/Header";
-import HomePageContainer from "./HomePageContainer";
-import { useParams } from "react-router";
-import MovieDetail from "../components/MovieDetail";
+
 import MainFooter from "../layouts/MainFooter";
-// import AuthContext from "../AuthComponents/AuthContext";
+import LoginModal from "../form/LoginModal";
 
 function ElevationScroll(props) {
   const { children, window } = props;
-
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -30,16 +29,14 @@ function ElevationScroll(props) {
 
 ElevationScroll.propTypes = {
   children: PropTypes.element.isRequired,
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
   window: PropTypes.func,
 };
 
-export default function ElevateAppBar(props) {
-  const { movieId } = useParams();
-
-  // useEffect(() => {
-  //   console.log("print in DetailPage with user: ", auth.user);
-  // }, []);
-
+export default function LoginPage(props) {
   return (
     <React.Fragment>
       <CssBaseline />
@@ -51,11 +48,10 @@ export default function ElevateAppBar(props) {
       <Container
         sx={{
           backgroundColor: "primary.light",
-          color: "primary.contrastText",
-          paddingTop: 4,
+          background: `url("https://images.thedirect.com/media/article_full/netflix-cancelled-shows.jpg?imgeng=cmpr_75/")`,
         }}
       >
-        <MovieDetail id={movieId} />
+        <LoginModal />
         <MainFooter />
       </Container>
     </React.Fragment>

@@ -18,7 +18,7 @@ import Category from "../components/Category";
 // import { useSearchParams } from "react-router-dom";
 
 const pages = ["Home", "TVShows", "Movies", "New & Popular"];
-const settings = ["Profile", "Account", "MyList", "Logout"];
+const settings = ["Profile", "Account", "Logout"];
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -100,15 +100,15 @@ function Header() {
     setAnchorElUser(event.currentTarget);
   };
 
-  // const handleCloseNavMenu = () => {
-  //   setAnchorElNav(null);
-  // };
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
     auth.logout(() => {
       navigate("/");
     });
+  };
+  const handleMyFavList = () => {
+    navigate("/myfavorite");
+    setAnchorElUser(null);
   };
 
   useEffect(() => {
@@ -186,6 +186,9 @@ function Header() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
+                <MenuItem key="fav" onClick={handleMyFavList}>
+                  <Typography textAlign="center">MyFavorites</Typography>
+                </MenuItem>
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting}</Typography>

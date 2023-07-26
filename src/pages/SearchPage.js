@@ -90,7 +90,7 @@ export default function SearchPage(props) {
           setTotalPages(Math.ceil(size / 12));
           let start = (page - 1) * 12;
           let end = start + 12;
-          console.log("searchList print collection: ", collection);
+          // console.log("searchList print collection: ", collection);
           setSearchList(collection.slice(start, end));
         }
         setLoading(false);
@@ -109,7 +109,7 @@ export default function SearchPage(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-      <Container sx={{ backgroundColor: "primary.light" }}>
+      <Container sx={{ backgroundColor: "primary.light", paddingTop: 4 }}>
         {searchList.length > 0 ? (
           <>
             <ShowMovies moviesList={searchList} />

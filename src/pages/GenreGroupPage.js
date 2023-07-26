@@ -53,8 +53,8 @@ export default function ElevateAppBar(props) {
   }
 
   useEffect(() => {
-    console.log("print in GenreGroup id: ", genreId);
-    console.log("print in Genre page: ", page);
+    // console.log("print in GenreGroup id: ", genreId);
+    // console.log("print in Genre page: ", page);
   }, [genreId, page]);
 
   useEffect(() => {
@@ -86,7 +86,7 @@ export default function ElevateAppBar(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-      <Container sx={{ backgroundColor: "primary.light" }}>
+      <Container sx={{ backgroundColor: "primary.light", paddingTop: 4 }}>
         {genreList.length > 0 ? (
           <>
             <ShowMovies moviesList={genreList} />

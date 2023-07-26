@@ -1,27 +1,20 @@
 import * as React from "react";
-// import { useContext } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-
-import LoginModal from "../form/LoginModal";
-// import MainLayout from "../layouts/MainLayout";
 import MainHeader from "../pages/MainHeader";
-// import AuthProvider from "../AuthComponents/Au/thProvider";
 import GenreGroupPage from "../pages/GenreGroupPage";
 import SearchPage from "../pages/SearchPage";
 
 import MovieDetailPage from "../pages/MovieDetailPage";
+import LoginModal from "../form/LoginModal";
+import MyFavorites from "../pages/MyFavorites";
 
 function Router() {
   let location = useLocation();
   let state = location.state;
-  // if (!auth.user) {
-  //   return <Navigate to="/login" state={{ from: location }} replace />;
-  // }
+
   return (
     <Routes location={state?.backgroundLocation || location}>
       <Route path="/" element={<MainHeader />}></Route>
-
-      {/* <Route index element={<MainLayout />} /> */}
       <Route path="/login" element={<LoginModal />}></Route>
 
       <Route path="/movie/:movieId" element={<MovieDetailPage />} />
@@ -29,6 +22,7 @@ function Router() {
       <Route path="/genre/:genreId" element={<GenreGroupPage />} />
 
       <Route path="/search" element={<SearchPage />} />
+      <Route path="/myfavorite" element={<MyFavorites />} />
     </Routes>
   );
 }

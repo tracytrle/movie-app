@@ -11,10 +11,12 @@ import { API_KEY } from "../api/config";
 import { Box, Stack } from "@mui/system";
 import Skeleton from "@mui/material/Skeleton";
 import Chip from "@mui/material/Chip";
+import { MergeType } from "@mui/icons-material";
 
 export default function MovieDetail({ id }) {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState();
+  const [items, setItems] = useState([]);
 
   // const imageUrl = "https://api.themoviedb.org/3/movie/";
   const imageUrl = "https://image.tmdb.org/t/p/w500/";
@@ -38,6 +40,33 @@ export default function MovieDetail({ id }) {
     };
     fetchData();
   }, []);
+
+  // initialize a list
+  useEffect(() => {
+    const storedItems = JSON.parse(localStorage.getItem("items"));
+    if (storedItems) {
+      setItems(storedItems);
+    }
+  }, []);
+
+  const addFavMovies = (item) => {
+    if (!items.some((m) => m.id === item.id)) {
+      const newItems = [...items, item];
+      setItems(newItems);
+      localStorage.setItem("items", JSON.stringify(newItems));
+    }
+  };
+
+  const removeFavMovies = (item) => {
+    const newItems = items.filter((m) => m.id !== item.id);
+    setItems(newItems);
+    localStorage.setItem("items", JSON.stringify(newItems));
+  };
+
+  // update the list
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
 
   const detailSkeleton = (
     <Stack spacing={1}>
@@ -111,6 +140,42 @@ export default function MovieDetail({ id }) {
                   color="forth"
                 >
                   <Button
+                    onClick={() => {
+                      removeFavMovies(movie);
+                    }}
+                    style={{
+                      border: "1px solid black",
+                      width: "50px",
+                      height: "40px",
+                      backgroundColor: "#57606f",
+                    }}
+                  >
+                    <svg
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv"
+                      focusable="false"
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      data-testid="AddIcon"
+                      id="icon_add"
+                      width="25px"
+                      height="20px"
+                    >
+                      <path d="M19 13h-10v-2h10v2z"></path>
+                    </svg>
+                  </Button>
+                  <p sx={{ fontSize: "8px" }}>-MyList</p>
+                </Typography>
+                <Typography
+                  display="block"
+                  textAlign="center"
+                  component="div"
+                  fontSize="0.8rem"
+                  color="forth"
+                >
+                  <Button
+                    onClick={() => {
+                      addFavMovies(movie);
+                    }}
                     style={{
                       border: "1px solid black",
                       width: "50px",
@@ -131,8 +196,9 @@ export default function MovieDetail({ id }) {
                       <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
                     </svg>
                   </Button>
-                  <p sx={{ fontSize: "8px" }}>MyList</p>
+                  <p sx={{ fontSize: "8px" }}>+MyList</p>
                 </Typography>
+
                 <Typography
                   display="block"
                   textAlign="center"
