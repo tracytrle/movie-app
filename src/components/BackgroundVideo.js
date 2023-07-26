@@ -1,11 +1,38 @@
-import React from "react";
-import myVideo from "./trailer3.mp4";
+import React, { useEffect } from "react";
 import { Stack } from "@mui/system";
+import YouTube from "react-youtube";
 
 import { Typography } from "@mui/material";
 import "../style.css";
 
 export default function BackgroundVideo() {
+  const videoId = "iuk77TjvfmE";
+
+  const [opts, setOpts] = React.useState({
+    playerVars: { autoplay: 1 },
+  });
+
+  function handleReady(event) {
+    event.target.pauseVideo();
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 600) {
+        setOpts({ ...opts, width: "345", height: "325" });
+      } else {
+        setOpts({ ...opts, width: "1200", height: "390" });
+      }
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [opts]);
+
   return (
     <Stack
       sx={{
@@ -13,28 +40,30 @@ export default function BackgroundVideo() {
         overflow: "hidden",
         width: "100%",
         height: "100%",
+        marginTop: 10,
       }}
     >
-      <video
-        autoPlay
-        loop
-        muted
-        id="myVideo"
+      <div
         sx={{
           position: "absolute",
-          width: "40%",
-          height: "100%",
-          objectFit: "cover",
           top: 0,
           left: 0,
-          zIndex: -1,
+          width: "100%",
+          height: "100%",
+          paddingBottom: "56.25%",
         }}
       >
-        <source src={myVideo} type="video/mp4" />
-      </video>
+        <YouTube
+          videoId={videoId}
+          opts={opts}
+          onReady={handleReady}
+          containerClassName="youtube-player"
+          className="youtube-player"
+        />
+      </div>
       <Typography
         sx={{
-          color: "black",
+          color: "white",
           position: "absolute",
           top: "50%",
           left: "50%",

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useContext, useState, useEffect } from "react";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -15,7 +14,6 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import AuthContext from "../AuthComponents/AuthContext";
 import Category from "../components/Category";
-// import { useSearchParams } from "react-router-dom";
 
 const pages = ["Home", "TVShows", "Movies", "New & Popular"];
 const settings = ["Profile", "Account", "Logout"];
@@ -92,9 +90,6 @@ function Header() {
     navigate("/login");
   };
 
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
   const handleOpenUserMenu = (event) => {
     event.preventDefault();
     setAnchorElUser(event.currentTarget);
@@ -125,7 +120,6 @@ function Header() {
           md: "space-between",
           xl: "space-between",
         },
-        // flexWrap: { xs: "wrap" },
         flexDirection: { xs: "row" },
       }}
       disableGutters
