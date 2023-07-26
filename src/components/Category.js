@@ -68,6 +68,14 @@ export default function Category() {
               "aria-labelledby": "basic-button",
             }}
           >
+            <MenuItem
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              HOME
+            </MenuItem>
+
             {genresList.map((genre) => (
               <MenuItem
                 key={genre.id}

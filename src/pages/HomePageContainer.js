@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import apiService from "../api/apiService";
 import { API_KEY } from "../api/config";
 import Grid from "@mui/material/Grid";
-// import TrendingGroup from "../components/TrendingGroup";
-import ShowMovies from "../components/ShowMovies";
-import Carousel from "better-react-carousel";
+
 import CarouselTrending from "../components/CarouselTrending";
 import Typography from "@mui/material/Typography";
+import BackgroundVideo from "../components/BackgroundVideo";
 
 function HomePage() {
   const [loading, setLoading] = useState();
@@ -36,18 +35,32 @@ function HomePage() {
         container
         bgcolor="#0F0E0F"
         direction="column"
-        justifyContent={{ md: "center", xs: "flex-end" }}
+        justifyContent={{ md: "center", xs: "center" }}
         sx={{
+          // height: "90%",
           minHeight: "100vh",
+          paddingTop: 0,
         }}
       >
+        <BackgroundVideo />
         <Grid item direction="column" container>
-          <Typography
-            style={{ color: "white", fontSize: "2rem", fontWeight: "bold" }}
-          >
-            TRENDING{" "}
-          </Typography>
-          <CarouselTrending moviesList={trendingList} />
+          {!loading ? (
+            <>
+              <Typography
+                style={{
+                  color: "white",
+                  fontSize: "1.2rem",
+                  fontWeight: "bold",
+                  paddingTop: "1rem",
+                }}
+              >
+                TRENDING{" "}
+              </Typography>
+              <CarouselTrending moviesList={trendingList} />
+            </>
+          ) : (
+            <div></div>
+          )}
         </Grid>
       </Grid>
     </>

@@ -9,7 +9,7 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 
 import Container from "@mui/material/Container";
 import Header from "../layouts/Header";
-import HomePageContainer from "./HomePageContainer";
+
 import { useParams } from "react-router";
 import { Typography } from "@mui/material";
 import MainFooter from "../layouts/MainFooter";
@@ -18,9 +18,7 @@ import PaginationController from "../components/PaginationController";
 
 function ElevationScroll(props) {
   const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,

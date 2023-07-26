@@ -1,15 +1,12 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
-
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
-
 import Container from "@mui/material/Container";
 import Header from "../layouts/Header";
 import HomePageContainer from "./HomePageContainer";
 import MainFooter from "../layouts/MainFooter";
-import Typography from "@mui/material/Typography";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -46,7 +43,6 @@ export default function ElevateAppBar(props) {
         </AppBar>
       </ElevationScroll>
       <Container sx={{ backgroundColor: "primary.light" }}>
-        <Typography>TRENDING: </Typography>
         <HomePageContainer />
         <MainFooter />
       </Container>
