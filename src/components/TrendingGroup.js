@@ -3,31 +3,14 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import MovieCard from "./MovieCard";
 import Typography from "@mui/material/Typography";
-import PaginationItem from "@mui/material/PaginationItem";
+
 import Divider from "@mui/material/Divider";
 import Skeleton from "@mui/material/Skeleton";
 import MovieDetail from "./MovieDetail";
-import { yellow } from "@mui/material/colors";
-import { CopyAllSharp } from "@mui/icons-material";
 
 function TrendingGroup({ trendingList, cutInitial, loadingTrending }) {
   const [cutList, setCutList] = useState();
   const [copiedList, setcopiedList] = useState([]);
-
-  // function handleList() {
-  //   let y;
-  //   if (copiedList.length === 0) {
-  //     setcopiedList([...trendingList]);
-  //     y = [...trendingList].slice(0, 4);
-  //     copiedList.splice(0, 4);
-  //   } else if (copiedList.length === 4) {
-  //     setcopiedList([...trendingList]);
-  //     y = copiedList.splice(0, 4);
-  //   } else {
-  //     y = copiedList.splice(4, 4);
-  //   }
-  //   return y;
-  // }
 
   useEffect(() => {
     let y = [...trendingList];
