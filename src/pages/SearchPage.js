@@ -12,7 +12,7 @@ import Header from "../layouts/Header";
 import { useSearchParams } from "react-router-dom";
 import ShowMovies from "../components/ShowMovies";
 import MainFooter from "../layouts/MainFooter";
-import PaginationController from "../components/PaginationController";
+import PaginationSearch from "../components/PaginationSearch";
 import { Typography } from "@mui/material";
 
 function ElevationScroll(props) {
@@ -39,6 +39,7 @@ export default function SearchPage(props) {
   const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState();
   const [searchList, setSearchList] = useState([]);
+  const [movies, setMovies] = useState([]);
   const searchInput = searchParams.get("keyword");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -46,10 +47,6 @@ export default function SearchPage(props) {
   function changePage(newPage) {
     setPage(newPage);
   }
-
-  useEffect(() => {
-    console.log("print page in Pag: ", page);
-  }, [page]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,11 +73,8 @@ export default function SearchPage(props) {
             }
           }
           let size = collection.length;
-
           setTotalPages(Math.ceil(size / 12));
-          let start = (page - 1) * 12;
-          let end = start + 12;
-          setSearchList(collection.slice(start, end));
+          setMovies(collection);
         }
         setLoading(false);
       } catch (e) {
@@ -88,7 +82,13 @@ export default function SearchPage(props) {
       }
     };
     fetchData();
-  }, [searchInput, page, totalPages]);
+  }, [searchInput, totalPages]);
+
+  useEffect(() => {
+    let start = (page - 1) * 12;
+    let end = start + 12;
+    setSearchList(movies.slice(start, end));
+  }, [page, movies]);
 
   return (
     <React.Fragment>
@@ -118,7 +118,7 @@ export default function SearchPage(props) {
             {searchList.length > 0 ? (
               <>
                 <ShowMovies moviesList={searchList} />
-                <PaginationController
+                <PaginationSearch
                   PageCount={totalPages}
                   changePage={changePage}
                 />

@@ -100,6 +100,7 @@ export default function ElevateAppBar(props) {
               <PaginationController
                 PageCount={totalPages}
                 changePage={changePage}
+                genreId={genreId}
               />
             </>
           ) : (

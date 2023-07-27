@@ -19,7 +19,7 @@ function HomePage() {
           `/trending/all/day?api_key=${API_KEY}`
         );
         const result = res.data.results;
-        console.log("print trendingList: ", result);
+        // console.log("print trendingList: ", result);
         setTrendingList(result);
 
         setLoading(false);

@@ -4,15 +4,8 @@ import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
-export default function PaginationController({
-  PageCount,
-  changePage,
-  genreId,
-}) {
+export default function PaginationSearch({ PageCount, changePage }) {
   const [page, setPage] = useState(1);
-  React.useEffect(() => {
-    setPage(1);
-  }, [genreId]);
 
   const handleChange = (event, value) => {
     setPage(value);
