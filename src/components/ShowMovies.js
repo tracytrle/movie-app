@@ -14,7 +14,7 @@ function ShowMovies({ moviesList }) {
         color="white"
       ></Stack>
       <Divider />
-      <Grid container direction="row" spacing={5} mt={2}>
+      <Grid container direction="row" spacing={2} mt={2}>
         {moviesList.map((item) => (
           <Grid key={item.id} item xs={6} sm={4} md={3}>
             <MovieCard item={item} />

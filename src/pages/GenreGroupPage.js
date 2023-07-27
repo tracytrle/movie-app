@@ -6,7 +6,7 @@ import { API_KEY } from "../api/config";
 import apiService from "../api/apiService";
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
-
+import { Stack } from "@mui/system";
 import Container from "@mui/material/Container";
 import Header from "../layouts/Header";
 
@@ -56,24 +56,29 @@ export default function ElevateAppBar(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      let url = `discover/movie?api_key=${API_KEY}&language=en-US&append_to_response=videos`;
+      let url = `discover/movie?`;
       try {
         setLoading(true);
-        const res = await apiService.get(`${url}&with_genres=${genreId}`);
-        const result = res.data.results;
-        let size = result.length;
+        const res = await apiService.get(
+          `${url}page=${page}&api_key=${API_KEY}&language=en-US&append_to_response=videos&with_genres=${genreId}`
+        );
 
-        setTotalPages(Math.ceil(size / 12));
-        let start = (page - 1) * 12;
-        let end = start + 12;
-        setGenreList(result.slice(start, end));
+        // console.log("print in genre totalpage: ", res.data.total_pages);
+        const result = res.data.results;
+        setTotalPages(res.data.total_pages);
+        // let size = result.length;
+
+        // setTotalPages(Math.ceil(size / 12));
+        // let start = (page - 1) * 12;
+        // let end = start + 12;
+        setGenreList(result);
         setLoading(false);
       } catch (e) {
         console.log(e.message);
       }
     };
     fetchData();
-  }, [genreList, page, totalPages, genreId]);
+  }, [genreList, page, genreId]);
 
   return (
     <React.Fragment>
@@ -83,21 +88,27 @@ export default function ElevateAppBar(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-      <Container sx={{ backgroundColor: "primary.light", paddingTop: 4 }}>
-        {loading && genreList.length > 0 ? (
-          <>
-            <ShowMovies moviesList={genreList} />
-            <PaginationController
-              PageCount={totalPages}
-              changePage={changePage}
-            />
-          </>
-        ) : (
-          <Typography>MOVIE NOT FOUND</Typography>
-        )}
+      <Stack
+        className="outerContainer"
+        sx={{ backgroundColor: "primary.light" }}
+        paddingTop="0.5rem"
+      >
+        <Container sx={{ backgroundColor: "primary.light", paddingTop: 6 }}>
+          {loading && genreList.length > 0 ? (
+            <>
+              <ShowMovies moviesList={genreList} />
+              <PaginationController
+                PageCount={totalPages}
+                changePage={changePage}
+              />
+            </>
+          ) : (
+            <Typography>MOVIE NOT FOUND</Typography>
+          )}
 
-        <MainFooter />
-      </Container>
+          <MainFooter />
+        </Container>
+      </Stack>
     </React.Fragment>
   );
 }
