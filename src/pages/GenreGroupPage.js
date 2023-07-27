@@ -50,9 +50,9 @@ export default function ElevateAppBar(props) {
     setPage(newPage);
   }
 
-  // useEffect(() => {
-  //   setPage(1);
-  // }, [genreId]);
+  useEffect(() => {
+    setPage(1);
+  }, [genreId]);
 
   useEffect(() => {
     const fetchData = async () => {

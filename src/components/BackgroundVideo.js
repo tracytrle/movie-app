@@ -22,7 +22,7 @@ export default function BackgroundVideo() {
       if (screenWidth < 600) {
         setOpts({ ...opts, width: "345", height: "325" });
       } else {
-        setOpts({ ...opts, width: "1200", height: "390" });
+        setOpts({ ...opts, width: "1200", height: "350" });
       }
     }
 
@@ -31,7 +31,7 @@ export default function BackgroundVideo() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [opts]);
+  }, []);
 
   return (
     <Stack
@@ -41,6 +41,7 @@ export default function BackgroundVideo() {
         width: "100%",
         height: "100%",
         marginTop: 10,
+        marginLeft: 1,
       }}
     >
       <div

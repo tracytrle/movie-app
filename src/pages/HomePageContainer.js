@@ -19,7 +19,8 @@ function HomePage() {
           `/trending/all/day?api_key=${API_KEY}`
         );
         const result = res.data.results;
-        setTrendingList(result.slice(0, 20));
+        console.log("print trendingList: ", result);
+        setTrendingList(result);
 
         setLoading(false);
       } catch (e) {
@@ -39,12 +40,13 @@ function HomePage() {
         sx={{
           // height: "90%",
           minHeight: "100vh",
-          paddingTop: 0,
+          paddingTop: -3,
+          ml: 1,
         }}
       >
         <BackgroundVideo />
         <Grid item direction="column" container>
-          {!loading ? (
+          {!loading && (
             <>
               <Typography
                 style={{
@@ -52,14 +54,13 @@ function HomePage() {
                   fontSize: "1.2rem",
                   fontWeight: "bold",
                   paddingTop: "1rem",
+                  marginLeft: "2rem",
                 }}
               >
                 TRENDING{" "}
               </Typography>
-              <CarouselTrending moviesList={trendingList} />
+              <CarouselTrending moviesList={trendingList} />\
             </>
-          ) : (
-            <div></div>
           )}
         </Grid>
       </Grid>

@@ -4,6 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Container from "@mui/material/Container";
+import { Stack } from "@mui/system";
 import Header from "../layouts/Header";
 import HomePageContainer from "./HomePageContainer";
 import MainFooter from "../layouts/MainFooter";
@@ -39,10 +40,13 @@ export default function ElevateAppBar(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-      <Container sx={{ backgroundColor: "primary.light" }}>
-        <HomePageContainer />
-        <MainFooter />
-      </Container>
+
+      <Stack sx={{ backgroundColor: "primary.light" }}>
+        <Container>
+          <HomePageContainer />
+          <MainFooter />
+        </Container>
+      </Stack>
     </React.Fragment>
   );
 }
