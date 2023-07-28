@@ -8,7 +8,7 @@ const style = {
   flexWrap: "wrap",
   display: "flex",
   justifyContent: "center",
-  overflow: "scroll",
+  overflow: "hidden",
   position: "absolute",
   top: "50%",
   left: "50%",
