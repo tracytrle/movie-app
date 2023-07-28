@@ -21,7 +21,7 @@ const style = {
   padding: "5px",
   borderRadius: "10px",
   flexWrap: "wrap",
-  overflow: "scroll",
+  overflow: "hidden",
 
   "@media (max-width: 375px)": {
     width: 240,
