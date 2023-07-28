@@ -4,7 +4,7 @@ import AppBar from "@mui/material/AppBar";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
-
+import { Stack } from "@mui/system";
 import Container from "@mui/material/Container";
 import Header from "../layouts/Header";
 import { useParams } from "react-router";
@@ -41,16 +41,22 @@ export default function ElevateAppBar(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-      <Container
-        sx={{
-          backgroundColor: "primary.light",
-          color: "primary.contrastText",
-          paddingTop: 4,
-        }}
+      <Stack
+        className="outerContainer"
+        sx={{ backgroundColor: "primary.light" }}
+        paddingTop="0.5rem"
       >
-        <MovieDetail id={movieId} />
-        <MainFooter />
-      </Container>
+        <Container
+          sx={{
+            backgroundColor: "primary.light",
+            color: "primary.contrastText",
+            paddingTop: 4,
+          }}
+        >
+          <MovieDetail id={movieId} />
+          <MainFooter />
+        </Container>
+      </Stack>
     </React.Fragment>
   );
 }

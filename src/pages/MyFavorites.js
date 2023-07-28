@@ -5,6 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Container from "@mui/material/Container";
 import Header from "../layouts/Header";
+import { Stack } from "@mui/system";
 import ShowMovies from "../components/ShowMovies";
 import MainFooter from "../layouts/MainFooter";
 import { Typography } from "@mui/material";
@@ -37,14 +38,21 @@ export default function MyFavorites(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-      <Container sx={{ backgroundColor: "primary.light" }}>
-        <Typography sx={{ color: "white", paddingTop: 15 }}>
-          MY FAVORITE MOVIES
-        </Typography>
-        <ShowMovies moviesList={myFavList} />
+      <Stack
+        className="outerContainer"
+        sx={{ backgroundColor: "primary.light" }}
+        paddingTop="0.5rem"
+        height="100vh"
+      >
+        <Container sx={{ backgroundColor: "primary.light" }}>
+          <Typography sx={{ color: "white", paddingTop: 15 }}>
+            MY FAVORITE MOVIES
+          </Typography>
+          <ShowMovies moviesList={myFavList} />
 
-        <MainFooter />
-      </Container>
+          <MainFooter />
+        </Container>
+      </Stack>
     </React.Fragment>
   );
 }

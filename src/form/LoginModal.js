@@ -25,7 +25,6 @@ const style = {
 
 function LoginModal() {
   let navigate = useNavigate();
-  let from = navigate?.currentPage || "/";
 
   const handleClose = () => {
     navigate(-1);
@@ -48,7 +47,7 @@ function LoginModal() {
         <Box sx={style}>
           <LoginForm
             callback={() => {
-              navigate(from, { replace: true });
+              navigate(-1);
             }}
           />
         </Box>

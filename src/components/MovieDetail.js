@@ -306,7 +306,14 @@ export default function MovieDetail({ id }) {
               >
                 <CardActions>
                   <Button
-                    sx={{ backgroundColor: "#e74c3c" }}
+                    sx={{
+                      backgroundColor: "#e74c3c",
+
+                      "&:hover": {
+                        backgroundColor: "#44bd32",
+                        color: "black",
+                      },
+                    }}
                     size="small"
                     color="primary"
                   >
@@ -327,7 +334,14 @@ export default function MovieDetail({ id }) {
                 </CardActions>
                 <CardActions>
                   <Button
-                    sx={{ backgroundColor: "#e74c3c" }}
+                    sx={{
+                      backgroundColor: "#e74c3c",
+
+                      "&:hover": {
+                        backgroundColor: "#44bd32",
+                        color: "black",
+                      },
+                    }}
                     size="small"
                     color="primary"
                   >

@@ -9,7 +9,7 @@ const CarouselTrending = ({ moviesList }) => {
   return (
     <div>
       <Grid container direction="row" spacing={0.5} mt={2}>
-        <Carousel cols={isSmallScreen ? 4 : 6} rows={1} gap={0} loop>
+        <Carousel cols={isSmallScreen ? 10 : 6} rows={1} gap={0} loop>
           {/* <Carousel value={value} onChange={onChange}> */}
           {moviesList.map((item) => (
             <Carousel.Item>

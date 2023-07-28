@@ -16,9 +16,9 @@ export default function MovieCard({ item }) {
     <>
       <Card
         sx={{
-          maxWidth: { xs: "245px", md: "90%", xl: "100%" },
+          maxWidth: { xs: "240px", md: "90%", xl: "100%" },
           // maxWitdh: 325,
-          maxHeight: { xs: "200px", md: "90%", xl: "100%" },
+          maxHeight: { xs: "280px", md: "90%", xl: "100%" },
         }}
       >
         <Box

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Stack } from "@mui/system";
 import YouTube from "react-youtube";
 
@@ -8,10 +8,8 @@ import "../style.css";
 export default function BackgroundVideo() {
   const videoId = "iuk77TjvfmE";
 
-  const [opts, setOpts] = React.useState({
-    playerVars: { autoplay: 1 },
-  });
-
+  const [width, setWidth] = useState("1200");
+  const [height, setHeight] = useState("350");
   function handleReady(event) {
     event.target.pauseVideo();
   }
@@ -20,18 +18,25 @@ export default function BackgroundVideo() {
     function handleResize() {
       const screenWidth = window.innerWidth;
       if (screenWidth < 600) {
-        setOpts({ ...opts, width: "345", height: "325" });
+        setWidth("345");
+        setHeight("325");
       } else {
-        setOpts({ ...opts, width: "1200", height: "350" });
+        setWidth("1200");
+        setHeight("350");
       }
     }
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const opts = {
+    playerVars: { autoplay: 1 },
+    width,
+    height,
+  };
 
   return (
     <Stack
