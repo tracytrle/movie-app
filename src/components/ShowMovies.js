@@ -12,6 +12,7 @@ function ShowMovies({ moviesList }) {
         justifyContent="space-between"
         alignItems="center"
         color="white"
+        backgroundColor="primary.light"
       ></Stack>
       <Divider />
       <Grid container direction="row" spacing={2} mt={2}>

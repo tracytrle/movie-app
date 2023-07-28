@@ -45,12 +45,13 @@ export default function ElevateAppBar(props) {
         className="outerContainer"
         sx={{ backgroundColor: "primary.light" }}
         paddingTop="0.5rem"
+        height="100vh"
       >
         <Container
           sx={{
             backgroundColor: "primary.light",
             color: "primary.contrastText",
-            paddingTop: 4,
+            paddingTop: 0,
           }}
         >
           <MovieDetail id={movieId} />

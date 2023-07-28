@@ -9,6 +9,7 @@ import { API_KEY } from "../api/config";
 import apiService from "../api/apiService";
 import Container from "@mui/material/Container";
 import Header from "../layouts/Header";
+import { Stack } from "@mui/system";
 import { useSearchParams } from "react-router-dom";
 import ShowMovies from "../components/ShowMovies";
 import MainFooter from "../layouts/MainFooter";
@@ -98,38 +99,42 @@ export default function SearchPage(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-      <Container sx={{ backgroundColor: "primary.light", paddingTop: 4 }}>
-        {loading ? (
-          <Box
-            sx={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "primary.light",
-            }}
-          >
-            <CircularProgress sx={{ color: "white" }} />
-          </Box>
-        ) : (
-          <>
-            {searchList.length > 0 ? (
-              <>
-                <ShowMovies moviesList={searchList} />
-                <PaginationSearch
-                  PageCount={totalPages}
-                  changePage={changePage}
-                />
-              </>
-            ) : (
-              <Typography>MOVIE NOT FOUND</Typography>
-            )}
-          </>
-        )}
-        <MainFooter />
-      </Container>
+
+      <Stack sx={{ backgroundColor: "primary.light" }}>
+        <Container sx={{ backgroundColor: "primary.light", paddingTop: 8 }}>
+          {loading ? (
+            <Box
+              sx={{
+                position: "absolute",
+                width: "100%",
+                maxWidth: "1200",
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "primary.light",
+              }}
+            >
+              <CircularProgress sx={{ color: "white" }} />
+            </Box>
+          ) : (
+            <>
+              {searchList.length > 0 ? (
+                <>
+                  <ShowMovies moviesList={searchList} />
+                  <PaginationSearch
+                    PageCount={totalPages}
+                    changePage={changePage}
+                  />
+                </>
+              ) : (
+                <Typography>MOVIE NOT FOUND</Typography>
+              )}
+            </>
+          )}
+          <MainFooter />
+        </Container>
+      </Stack>
     </React.Fragment>
   );
 }
