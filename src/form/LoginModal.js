@@ -8,7 +8,6 @@ const style = {
   flexWrap: "wrap",
   display: "flex",
   justifyContent: "center",
-  overflow: "hidden",
   position: "absolute",
   top: "50%",
   left: "50%",
