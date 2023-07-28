@@ -1,4 +1,4 @@
-outerContainer {
+.outerContainer {
   scroll-behavior: smooth;
   background-color: "#0F0E0F";
   overflow-x: hidden;

@@ -99,8 +99,11 @@ export default function SearchPage(props) {
           <Header />
         </AppBar>
       </ElevationScroll>
-
-      <Stack sx={{ backgroundColor: "primary.light" }}>
+      <Stack
+        className="outerContainer"
+        sx={{ backgroundColor: "primary.light" }}
+        paddingTop="0.5rem"
+      >
         <Container sx={{ backgroundColor: "primary.light", paddingTop: 8 }}>
           {loading ? (
             <Box
